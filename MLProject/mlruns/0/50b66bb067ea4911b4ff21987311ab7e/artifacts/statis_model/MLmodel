@@ -1,0 +1,20 @@
+artifact_path: statis_model
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+mlflow_version: 2.19.0
+model_size_bytes: 5612269
+model_uuid: ee935722839c4792ad1b25228f3b24c0
+run_id: 50b66bb067ea4911b4ff21987311ab7e
+utc_time_created: '2026-05-17 19:39:35.398489'
