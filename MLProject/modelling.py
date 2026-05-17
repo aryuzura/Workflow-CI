@@ -3,9 +3,18 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import mlflow
 import mlflow.sklearn
+import os
 
 if __name__ == "__main__":
-    df = pd.read_csv('../dataset_preprocessing.csv')
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.abspath(os.path.join(base_dir, "..", "dataset_preprocessing.csv"))
+    
+    print(f"Mencoba membaca dataset dari jalur absolut: {csv_path}")
+    
+    if not os.path.exists(csv_path):
+        raise FileNotFoundError(f"Waduh, file tidak ditemukan di jalur: {csv_path}")
+
+    df = pd.read_csv(csv_path)
     X = df.drop('target', axis=1)
     y = df['target']
 
@@ -14,6 +23,6 @@ if __name__ == "__main__":
     with mlflow.start_run():
         model = RandomForestClassifier(random_state=42)
         model.fit(X_train, y_train)
-        
+
         mlflow.sklearn.log_model(model, "outputs")
         print("Model training via MLproject sukses dijalankan!")
