@@ -26,3 +26,4 @@ if __name__ == "__main__":
 
         mlflow.sklearn.log_model(model, "outputs")
         print("Model training via MLproject sukses dijalankan!")
+# pancing
