@@ -34,5 +34,6 @@ jobs:
 
       - name: Build and Push Docker Image via MLflow
         run: |
-          mlflow models build-docker -m "MLProject/mlruns/0" -n "${{ secrets.DOCKERHUB_USERNAME }}/parfumemodel:latest" --enable-mlserver
+          cd MLProject
+          mlflow models build-docker -m "model_siap_docker" -n "${{ secrets.DOCKERHUB_USERNAME }}/parfumemodel:latest" --enable-mlserver
           docker push "${{ secrets.DOCKERHUB_USERNAME }}/parfumemodel:latest"
