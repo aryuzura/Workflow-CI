@@ -24,6 +24,14 @@ if __name__ == "__main__":
         model = RandomForestClassifier(random_state=42)
         model.fit(X_train, y_train)
 
-        mlflow.sklearn.log_model(model, "outputs")
-        print("Model training via MLproject sukses dijalankan!")
-# pancing
+        mlflow.sklearn.log_model(model, "statis_model")
+        
+        import shutil
+        run_id = mlflow.active_run().info.run_id
+        src_path = f"mlruns/0/{run_id}/artifacts/statis_model"
+        dst_path = "./model_siap_docker"
+        if os.path.exists(dst_path):
+            shutil.rmtree(dst_path)
+        shutil.copytree(src_path, dst_path)
+        
+        print("Model training dan copy artifact sukses!")
